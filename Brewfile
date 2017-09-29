@@ -1,0 +1,32 @@
+tap 'caskroom/cask'
+tap 'git-duet/tap'
+tap 'homebrew/bundle'
+tap 'homebrew/core'
+tap 'caskroom/fonts'
+tap 'cloudfoundry/tap'
+
+cask 'atom'
+cask 'flycut'
+cask 'font-inconsolata'
+cask 'google-chrome'
+cask 'iterm2'
+cask 'java'
+cask 'jetbrains-toolbox'
+cask 'keycastr'
+cask 'slack'
+cask 'spotify'
+cask 'screenhero'
+cask 'sourcetree'
+cask 'vagrant'
+cask 'virtualbox'
+cask 'zoomus'
+
+brew 'bosh-cli', args: ['without-bosh2']
+brew 'git-duet'
+brew 'nvm'
+brew 'lastpass-cli', args: ['with-pinentry']
+brew 'direnv'
+brew 'node'
+brew 'postgres'
+brew 'rbenv'
+brew 'yarn', args: ['without-node']

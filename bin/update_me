@@ -1,0 +1,41 @@
+set -u
+
+main () {
+  setup_bash_it
+  update_brew
+}
+
+setup_bash_it() {
+    echo "Setting up bash-it... 🛠"
+    if [ -d "${HOME}/.bash_it" ]; then
+        (cd "${HOME}/.bash_it" && git pull)
+    else
+        git clone https://github.com/Bash-it/bash-it.git "${HOME}/.bash_it"
+    fi
+
+    "${HOME}/.bash_it/install.sh" --silent
+    mv ~/.bash_profile.bak ~/.bash_profile
+    
+    set +eu
+    # shellcheck disable=1090
+    source "${HOME}/.bash_profile"
+    (
+        cd "${HOME}/.bash_it"
+	for alias in curl git homebrew; do bash-it enable alias $alias; done
+        for plugin in base git explain projects; do bash-it enable plugin $plugin; done
+        for completion in brew git ssh gem ; do
+            bash-it enable completion $completion
+        done)
+    source "${HOME}/.bash_profile"
+    set -eu
+}
+
+update_brew() {
+  echo "Brewing up a treat...☕️"
+  brew tap Homebrew/bundle
+  brew update
+  brew upgrade
+  (cd && brew bundle -v)
+}
+
+main "$@"

@@ -1,0 +1,1 @@
+bash <(lpass show 'load-ghub-key' --notes)
